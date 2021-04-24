@@ -1,0 +1,31 @@
+# Minimal Configuration (basically everything in 'few') - Not tested yet!
+<configuration Minimal>
+    WCFLAGS: -s -O3
+    WCXXFLAGS: -s -O3
+    WINCLUDED_APR: yes
+    EMODS_SHARED: few
+    EMOD_UNIXD: yes
+</configuration>
+
+# Minimal Static Configuration (basically everything in 'few') - Not tested yet!
+<configuration Minimal_Static>
+    WCFLAGS: -s -O3
+    WCXXFLAGS: -s -O3
+    WINCLUDED_APR: yes
+    EMODS_SHARED: few
+    EMOD_AUTHN_CORE: static
+    EMOD_AUTHZ_CORE: static
+    EMOD_ENV: static
+    EMOD_STATUS: static
+    EMOD_UNIXD: static
+    EMOD_AUTOINDEX: static
+</configuration>
+
+# All Configuration (basically everything in 'all') - Not tested yet!
+<configuration All>
+    WCFLAGS: -s -O3
+    WCXXFLAGS: -s -O3
+    WINCLUDED_APR: yes
+    EMODS_SHARED: all
+    EMOD_FCGID: yes
+</configuration>

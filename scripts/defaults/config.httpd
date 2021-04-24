@@ -1,0 +1,11 @@
+<configuration Default>
+    WSERVERNAME: localhost
+    WSERVERADMIN: admin@localhost
+    WOMOD_SYSTEMD: yes
+</configuration>
+
+<configuration Minimal>
+    WSERVERNAME: localhost
+    WSERVERADMIN: admin@localhost
+    WOMOD_SYSTEMD: yes
+</configuration>
