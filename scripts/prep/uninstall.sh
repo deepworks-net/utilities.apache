@@ -18,3 +18,7 @@ if test "$IMAGE_BASE" = "CENTOS7"; then
     # clean up after ourselves
     dnf clean all;
 fi
+if test "$IMAGE_BASE" = "ALPINE"; then
+    # Uninstall all tools and such!
+    apk del httpd-build-packs
+fi
