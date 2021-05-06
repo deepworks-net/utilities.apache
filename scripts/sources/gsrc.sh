@@ -23,7 +23,7 @@ while getopts "h:m:o:f:u:a:" opt; do
 done
 
 # Set the default output directory for the source files if not defined
-if test -z "$OUT"; then OUT="/src"; fi
+if test -z "$OUT"; then OUT="httpd-build"; fi
 
 # Set the default httpd source version if not defined
 if test -z "$HTTPDSRC"; then HTTPDSRC="httpd-2.4.46"; fi
@@ -40,7 +40,7 @@ if test -z "$APRUTILSRC"; then APRUTILSRC="apr-util-1.6.1"; fi
 # Set the default openssl source version if not defined
 if test -z "$OPENSSLSRC"; then OPENSSLSRC="openssl-1.1.1k"; fi
 
-# Set the default mirror url if not defined
+# Set the default mirror url for apache if not defined
 if test -z "$MRR"; then MRR="ftp.wayne.edu/apache"; fi
 
 # Default Zipped Archives
@@ -50,9 +50,11 @@ _APRSRC="$APRSRC.tar.bz2"
 _APRUTILSRC="$APRUTILSRC.tar.bz2"
 _OPENSSLSRC="$OPENSSLSRC.tar.gz"
 
+mkdir -p "${OUT}"
+
 cd "${OUT}"
 
-mkdir "${OUT}/zip"
+mkdir "zip" && mkdir "src" && mkdir "httpd"
 
 # Get Apache sha256
 echo "740eddf6e1c641992b22359cabc66e6325868c3c5e2e3f98faf349b61ecf41ea *${_HSRC}" >"${_HSRC}.sha256" 
@@ -67,7 +69,7 @@ if ! sha256sum -c -s "${_HSRC}.sha256"; then
 fi
 
 # Extract apache source files
-tar -xjvf "${_HSRC}" && mv "${HTTPDSRC}" "httpd"
+tar -xjvf "${_HSRC}" && mv "${HTTPDSRC}" "src/httpd" && cp -R src/httpd/* httpd/
 
 # Get Apache FCGID sha256
 echo "f0b6d87dfcfe18b318905a3f91274051f3f17945 *${_FSRC}" >"${_FSRC}.sha1"
@@ -82,7 +84,7 @@ if ! sha1sum -c -s "${_FSRC}.sha1"; then
 fi
 
 # Extract apache FCGID source files
-tar -xjvf "${_FSRC}" && mv "${FCGIDSRC}" "mod_fcgid"
+tar -xjvf "${_FSRC}" && mv "${FCGIDSRC}" "src/mod_fcgid" && cp -R src/mod_fcgid/* httpd/
 
 echo "Getting APR Sources"
 # get into srclib directory
@@ -111,9 +113,11 @@ if ! sha256sum -c -s "${_APRUTILSRC}.sha256"; then
     exit 1
 fi
 
+mkdir "httpd/srclib/apr" && mkdir "httpd/srclib/apr-util"
+
 # unpack
-tar -xjvf "${_APRSRC}" && mv "${APRSRC}" "apr"
-tar -xjvf "${_APRUTILSRC}" && mv "${APRUTILSRC}" "apr-util"
+tar -xjvf "${_APRSRC}" && mv "${APRSRC}" "src/apr" && cp -R src/apr/* httpd/srclib/apr/
+tar -xjvf "${_APRUTILSRC}" && mv "${APRUTILSRC}" "src/apr-util" && cp -R src/apr-util/* httpd/srclib/apr-util/
 
 # Get OpenSSL sha256
 echo "892a0875b9872acd04a9fde79b1f943075d5ea162415de3047c327df33fbaee5 *${_OPENSSLSRC}" >"${_OPENSSLSRC}.sha256" 
@@ -129,25 +133,25 @@ if ! sha256sum -c -s "${_OPENSSLSRC}.sha256"; then
     exit 1
 fi
 
+mkdir "httpd/srclib/openssl"
+
 # unpack
-tar -xzvf "${_OPENSSLSRC}" && mv "${OPENSSLSRC}" "openssl"
+tar -xzvf "${_OPENSSLSRC}" && mv "${OPENSSLSRC}" "src/openssl" && cp -R src/openssl/* httpd/srclib/openssl/
 
 # Clean Up
 rm -f "${_APRSRC}.sha256"
-mv "${_APRSRC}" "${OUT}/zip/${_APRSRC}"
+mv "${_APRSRC}" "zip/${_APRSRC}"
 rm -f "${_APRUTILSRC}.sha256"
-mv "${_APRUTILSRC}" "${OUT}/zip/${_APRUTILSRC}"
+mv "${_APRUTILSRC}" "zip/${_APRUTILSRC}"
 
 rm -f "${_OPENSSLSRC}.sha256"
-mv "${_OPENSSLSRC}" "${OUT}/zip/${_OPENSSLSRC}"
-
-cd "${OUT}"
+mv "${_OPENSSLSRC}" "zip/${_OPENSSLSRC}"
 
 # Clean Up
-rm -f "${OUT}/${_HSRC}.sha256"
-mv "${OUT}/${_HSRC}" "${OUT}/zip/${_HSRC}"
-rm -f "${OUT}/${_FSRC}.sha1"
-mv "${OUT}/${_FSRC}" "${OUT}/zip/${_FSRC}"
+rm -f "${_HSRC}.sha256"
+mv "${_HSRC}" "zip/${_HSRC}"
+rm -f "${_FSRC}.sha1"
+mv "${_FSRC}" "zip/${_FSRC}"
 
 # Set permissions
-chmod 777 -R "${OUT}"
+chmod 777 -R "../${OUT}"

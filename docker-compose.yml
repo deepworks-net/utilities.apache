@@ -1,0 +1,13 @@
+version: "3.7"
+services: 
+  Elpine:
+    image: apache-test:elpine
+    command: /sbin/init
+    expose:
+      - 80
+      - 443
+    ports:
+    - "80:80"
+    - "443:443"
+    build:
+      context: .
