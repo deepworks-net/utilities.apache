@@ -1,5 +1,8 @@
 # apache-scripts Changelog
 
+(05/10/2021) 1.1.1:<br/>
+    - Fixed issue in run script where it was not pulling sources from the dist folder<br/>
+<br/>
 (05/10/2021) 1.1.0:<br/>
     - Removed running the run script in Dockerfile<br/>
     - Updated apache build scripts to run via relative paths<br/>

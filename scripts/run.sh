@@ -51,7 +51,7 @@ echo "Compiling Apache..."
 # Make httpd-build directory
 mkdir -p "dist/httpd-build"
 # Move source files
-cp -R sources/httpd-src/httpd/* dist/httpd-build/
+cp -R dist/httpd-src/* dist/httpd-build/
 # Move Config files
 cp -R configs/httpd/* dist/httpd-build/
 # Move build and configure scripts
