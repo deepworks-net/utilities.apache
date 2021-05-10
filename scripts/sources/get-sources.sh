@@ -4,7 +4,7 @@
 # Assumes the working directory is the current directory.
 
 # Get the Apache Sources
-. "./apache-src.sh"
+. "./httpd-src.sh"
 
 # Get the OpenSSL Sources
 . "./openssl-src.sh"

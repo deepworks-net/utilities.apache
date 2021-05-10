@@ -1,5 +1,14 @@
 # apache-scripts Changelog
 
+(05/10/2021) 1.1.0:<br/>
+    - Removed running the run script in Dockerfile<br/>
+    - Updated apache build scripts to run via relative paths<br/>
+    - Changed build script structure to require being run/placed in the root build directory<br/>
+    - Moved dependency install/uninstall scripts to the root folder<br/>
+    - Renamed apache-src.sh to httpd-src.sh<br/>
+    - Created a run script at the root that will download sources if they do not exist and then compile them<br/>
+    - Added readme/docs for use<br/>
+<br/>
 (05/07/2021) 1.0.4:<br/>
     - Renamed gsrc.sh script to get-sources.sh<br/>
     - Split out Apache and OpenSSL source download scripts<br/>

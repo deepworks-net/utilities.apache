@@ -1,16 +1,13 @@
 #!/bin/sh
 
-# Default Out Locations in case it does not exist
-if test -z "$OUT"; then OUT="/hank"; fi
-
 # Default Config in case it does not exist
 if test -z "$CONFIG"; then CONFIG="Default"; fi
 
 # Read In Our Configurations
-"$OUT/config.sh" -o "$CONFIG"
+"./config.sh" -o "$CONFIG"
 
 # Load environmental variables
-source "/etc/profile"
+. "/etc/profile"
 
 # Function to enable a module in a file
 Enable_Mod() { sed -i -e "s/#LoadModule $1/LoadModule $1/g" $2; }
@@ -62,8 +59,6 @@ if test -z "$WSERVERADMIN"; then
   echo "export WSERVERADMIN=you@example.com" >> "/etc/profile.d/apache-config.sh"
 fi
 
-# Set the current build directory
-THEBUILDDIR="$OUT/httpd-build"
 # Easy location to our Config File
 CONF_FILE="$sysconfdir/httpd.conf"
 # Easy location to the extras dir

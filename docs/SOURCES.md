@@ -1,7 +1,7 @@
-# Current Information on the apache 'Sources' script
-The 'Sources' script pulls down the apache sources and required packages for building from source.
-
-After the script is run, the following is created in the 'sources' directory:<br/>
+# Current Information on the apache 'Sources' scripts
+The 'Sources' script pulls down the apache sources and required packages for building from source. Run 'get-sources.sh' to get all sources. Run '${app-name}-src.sh' to get the sources of '${app-name}'.<br/>
+<br/>
+After the 'get-sources.sh' is run, the following is created in the working directory:<br/>
 <br/>
 --/httpd-src - The root directory for httpd sources (httpd, mod_fcgid, apr, and apr-util)<br/>
 &nbsp;&nbsp;--/httpd - The current httpd and fcgid sources combined together<br/>

@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Default Out Locations in case it does not exist
-if test -z "$OUT"; then OUT="/hank"; fi
-
 # Check for parameters
 while getopts "o:" opt; do
 	case "${opt}" in
@@ -17,10 +14,10 @@ if test -z "$OPTIONS"; then
 fi
 
 # Add the options list
-source "$OUT/options_list.sh"
+. "./options_list.sh"
 
 # Add the parse functions
-source "$OUT/parse.sh"
+. "./parse.sh"
 
 # Parse the file!
 Parse_File "config.options" "$OPTIONS" "$OPTOMUNDO"

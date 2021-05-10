@@ -10,4 +10,4 @@ COPY "scripts" "tmp"
 
 WORKDIR "/.educloud/tmp"
 # Run the scripts
-RUN "./run.sh"
+#RUN "./run.sh"

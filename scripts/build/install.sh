@@ -1,18 +1,13 @@
 #!/bin/sh
 
-# Default Out Locations in case it does not exist
-if test -z "$OUT"; then OUT="/hank"; fi
-
 # Default Layout in case it does not exist
 if test -z "$LAYOUT"; then LAYOUT="Apache"; fi
 
 # Default Options in case it does not exist
 if test -z "$OPTIONS"; then OPTIONS="All"; fi
 
-# Set the current build directory
-THEBUILDDIR="$OUT/httpd-build"
 # Set the current build config file location
-OUT_FILE="$OUT/build-config.sh"
+OUT_FILE="build-config.sh"
 
 # Function to add a Flag beforehand. IE Environment Variables
 Add_Flag() { echo "$1=\"$2\" \\" >>$OUT_FILE; }
@@ -50,11 +45,11 @@ Check_Mod() {
 }
 
 # Read In Our Configurations
-"$OUT/layout.sh" -l "$LAYOUT"
-"$OUT/options.sh" -o "$OPTIONS"
+"./layout.sh" -l "$LAYOUT"
+"./options.sh" -o "$OPTIONS"
 
 # Read in what we parsed from the configuration to make them env vars
-source "/etc/profile"
+. "/etc/profile"
 
 # Remove the file if it already exists (just in case!)
 rm -f $OUT_FILE
@@ -73,7 +68,7 @@ if test -n "$WLIBS"; then Add_Flag "LIBS" "$WLIBS"; fi
 if test -n "$WCPPFLAGS"; then Add_Flag "CPPFLAGS" "$WCPPFLAGS"; fi
 if test -n "$WCPP"; then Add_Flag "CPP" "$WCPP"; fi
 
-echo "\"$THEBUILDDIR/configure\" \\" >>$OUT_FILE
+echo "\"./configure\" \\" >>$OUT_FILE
 
 if test -n "$QUIET"; then Add_Option "quiet"; fi # Check for quiet flag
 if test -n "$SILENT"; then Add_Option "silent"; fi # Check for silent flag
@@ -350,9 +345,9 @@ Enable_Mod "layout" $LAYOUT
 echo "&& make && make install" >>$OUT_FILE
 
 # Set Default APR_PATH
-APR_PATH="$THEBUILDDIR/srclib/apr"
+APR_PATH="./srclib/apr"
 # Set Default APR_UTIL_PATH
-APR_UTIL_PATH="$THEBUILDDIR/srclib/apr-util"
+APR_UTIL_PATH="./srclib/apr-util"
 
 # Check for alternate path for APR
 if test -n "$WPACK_APR" && ! test "$WPACK_APR" = "no" && ! test "$WPACK_APR" = "yes"; then
@@ -364,13 +359,13 @@ if test -n "$WPACK_APR_UTIL" && ! test "$WPACK_APR_UTIL" = "no" && ! test "$WPAC
   APR_UTIL_PATH="$WPACK_APR_UTIL"
 fi
 
-"$THEBUILDDIR/buildconf" --with-apr=$APR_PATH --with-apr-util=$APR_UTIL_PATH
+"./buildconf" --with-apr=$APR_PATH --with-apr-util=$APR_UTIL_PATH
 
 echo 'Running Configuration: '
-cat $OUT_FILE
+cat "$OUT_FILE"
 # Configure Reference - http://httpd.apache.org/docs/2.4/programs/configure.html
 # Run the file which executes the Configure, Make, and Install
-$OUT_FILE
+"./$OUT_FILE"
 
 EXTRAS_DIR="$sysconfdir/extra"
 

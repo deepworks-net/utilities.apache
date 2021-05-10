@@ -31,6 +31,9 @@
 *.md text eol=lf
 *.tpl text eol=lf
 *.dna text eol=lf
+*.layout text eol=lf
+*.options text eol=lf
+*.httpd text eol=lf
 
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)
