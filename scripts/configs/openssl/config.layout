@@ -1,0 +1,9 @@
+##
+##  config.layout -- Pre-defined Installation Path Layouts
+##
+
+#   Classical OpenSSL path layout.
+<Layout OpenSSL>
+    ssl_prefix:   /usr/local
+    ssl_dir:   ${ssl_prefix}/ssl
+</Layout>

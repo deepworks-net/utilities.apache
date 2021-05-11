@@ -8,10 +8,8 @@ if test "$IMAGE_BASE" = "CENTOS8"; then
     # Get Essential Updates
     dnf -y upgrade-minimal
     # Install All Required Packages To make Apache and run it, then cleanup.
-    # Required to run apache
-    dnf --setopt=install_weak_deps=False -y install openssl
     # Required to make and install apache - to be uninstalled
-    dnf --setopt=install_weak_deps=False -y install grub2-common grub2-tools gcc make automake jansson libcurl dnf-plugins-core apr apr-util apr-devel apr-util-devel pcre-devel openssl-devel jansson-devel libcurl-devel --allowerasing
+    dnf --setopt=install_weak_deps=False -y install grub2-common grub2-tools gcc make automake jansson libcurl dnf-plugins-core apr apr-util apr-devel apr-util-devel pcre-devel jansson-devel libcurl-devel --allowerasing
     # Needed for libnghttp2-devel
     dnf config-manager --set-enabled powertools;
     # Needed to build http2 module
@@ -26,10 +24,8 @@ if test "$IMAGE_BASE" = "CENTOS7"; then
     # Get Essential Updates
     dnf -y upgrade-minimal
     # Install All Required Packages To make Apache and run it, then cleanup.
-    # Required to run apache
-    dnf --setopt=install_weak_deps=False -y install openssl
     # Required to make and install apache - to be uninstalled
-    dnf --setopt=install_weak_deps=False -y install grub2-common grub2-tools gcc make automake jansson libcurl dnf-plugins-core apr apr-util apr-devel apr-util-devel pcre-devel openssl-devel jansson-devel libcurl-devel --allowerasing
+    dnf --setopt=install_weak_deps=False -y install grub2-common grub2-tools gcc make automake jansson libcurl dnf-plugins-core apr apr-util apr-devel apr-util-devel pcre-devel jansson-devel libcurl-devel --allowerasing
     # Needed for libnghttp2-devel
     dnf --setopt=install_weak_deps=False -y install epel-release
     # Needed to build/run http2 module
@@ -44,7 +40,7 @@ if test "$IMAGE_BASE" = "ALPINE"; then
     apk -U upgrade;
     #apk add apache2
     # Required to run apache
-    apk add openssl pcre libuuid expat nghttp2
+    apk add pcre libuuid expat nghttp2
     # Required to make and install apache - to be uninstalled
-    apk add --virtual httpd-build-packs apr apr-util apr-dev apr-util-dev m4 curl-dev build-base pcre-dev openssl-dev jansson jansson-dev nghttp2-dev automake autoconf
+    apk add --virtual httpd-build-packs linux-headers apr apr-util apr-dev apr-util-dev m4 curl-dev build-base pcre-dev jansson jansson-dev nghttp2-dev automake autoconf
 fi

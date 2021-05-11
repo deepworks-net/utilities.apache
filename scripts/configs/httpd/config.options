@@ -3,6 +3,9 @@
     WCFLAGS: -s -O3
     WCXXFLAGS: -s -O3
     WINCLUDED_APR: yes
+    EMOD_SSL: static
+    EMOD_SSL_STATICLIB_DEPS: static
+    WPACK_SSL: /usr/local
     EMODS_SHARED: few
     EMOD_UNIXD: yes
 </configuration>
@@ -12,6 +15,9 @@
     WCFLAGS: -s -O3
     WCXXFLAGS: -s -O3
     WINCLUDED_APR: yes
+    EMOD_SSL: static
+    EMOD_SSL_STATICLIB_DEPS: static
+    WPACK_SSL: /usr/local
     EMODS_SHARED: few
     EMOD_AUTHN_CORE: static
     EMOD_AUTHZ_CORE: static
@@ -26,6 +32,9 @@
     WCFLAGS: -s -O3
     WCXXFLAGS: -s -O3
     WINCLUDED_APR: yes
+    EMOD_SSL: static
+    EMOD_SSL_STATICLIB_DEPS: static
+    WPACK_SSL: /usr/local
     EMODS_SHARED: all
     EMOD_FCGID: yes
 </configuration>

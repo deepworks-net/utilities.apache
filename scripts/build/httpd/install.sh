@@ -59,6 +59,8 @@ echo "#!/bin/sh" >>$OUT_FILE && chmod 777 $OUT_FILE
 # Figure out which ones are used and build call?
 #cat "/tmp/apache-build-options"
 
+# Check for OpenSSL?
+
 # Check for flags
 if test -n "$WCC"; then Add_Flag "CC" "$WCC"; fi
 if test -n "$WCFLAGS"; then Add_Flag "CFLAGS" "$WCFLAGS"; fi

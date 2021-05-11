@@ -45,6 +45,17 @@ echo "Installing Dependencies..."
 
 # Build any libraries that need to be compiled from source before compiling apache
 echo "Building Dependencies..."
+echo "Building OpenSSL..."
+# Make openssl-build directory
+mkdir -p "dist/openssl-build"
+# Move source files
+cp -R dist/openssl-src/* dist/openssl-build/
+# Move Config files
+cp -R configs/openssl/* dist/openssl-build/
+# Move build and configure scripts
+cp -R build/openssl/* dist/openssl-build/
+# Run install
+cd "dist/openssl-build" && "./install.sh" && cd "../.."
 
 # Build and install apache
 echo "Compiling Apache..."
@@ -55,7 +66,7 @@ cp -R dist/httpd-src/* dist/httpd-build/
 # Move Config files
 cp -R configs/httpd/* dist/httpd-build/
 # Move build and configure scripts
-cp -R build/* dist/httpd-build/
+cp -R build/httpd/* dist/httpd-build/
 # Run install & configure!
 cd "dist/httpd-build" && "./install.sh" && "./configure.sh" && cd "../.."
 
