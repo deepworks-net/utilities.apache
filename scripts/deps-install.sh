@@ -38,9 +38,11 @@ fi
 if test "$IMAGE_BASE" = "ALPINE"; then
     # Get All Updates
     apk -U upgrade;
+    # Install packages needed to build/compile stuff
+    apk add --virtual build-packs linux-headers m4 build-base automake autoconf
     #apk add apache2
     # Required to run apache
     apk add pcre libuuid expat nghttp2
     # Required to make and install apache - to be uninstalled
-    apk add --virtual httpd-build-packs linux-headers apr apr-util apr-dev apr-util-dev m4 curl-dev build-base pcre-dev jansson jansson-dev nghttp2-dev automake autoconf
+    apk add --virtual httpd-build-packs apr apr-util apr-dev apr-util-dev curl-dev pcre-dev jansson jansson-dev nghttp2-dev
 fi

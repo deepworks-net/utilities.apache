@@ -1,0 +1,14 @@
+#!/bin/sh
+
+# Build OpenSSL
+echo "Building OpenSSL..."
+# Make openssl-build directory
+mkdir -p "dist/openssl-build"
+# Move source files
+cp -R dist/openssl-src/* dist/openssl-build/
+# Move Config files
+cp -R configs/openssl/* dist/openssl-build/
+# Move build and configure scripts
+cp -R build/openssl/* dist/openssl-build/
+# Run install
+cd "dist/openssl-build" && "./install.sh" && cd "../.."

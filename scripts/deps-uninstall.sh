@@ -20,5 +20,5 @@ if test "$IMAGE_BASE" = "CENTOS7"; then
 fi
 if test "$IMAGE_BASE" = "ALPINE"; then
     # Uninstall all tools and such!
-    apk del httpd-build-packs
+    apk del build-packs httpd-build-packs
 fi

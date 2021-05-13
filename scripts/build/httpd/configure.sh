@@ -175,7 +175,7 @@ if test -n "$WMOD_SSL"; then
   # Move over the default ssl configuration
   mv "$EXTRAS_DIR/httpd-ssl.conf" "$ENABLE_DIR/httpd-ssl.conf"; 
   # Make default self signed certificate
-  openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/CN=$WSERVERNAME" -keyout $sysconfdir/$WSERVERNAME.key  -out $sysconfdir/$WSERVERNAME.crt
+  env LD_LIBRARY_PATH="$ssl_prefix/lib" openssl req -new -newkey rsa:4096 -nodes -x509 -subj "/CN=$WSERVERNAME" -keyout $sysconfdir/$WSERVERNAME.key  -out $sysconfdir/$WSERVERNAME.crt
   # Update Server conf
   echo "<VirtualHost *:443>
     ServerName $WSERVERNAME

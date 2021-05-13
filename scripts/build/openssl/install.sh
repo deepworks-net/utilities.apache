@@ -9,6 +9,11 @@ if test -z "$SSL_LAYOUT"; then SSL_LAYOUT="OpenSSL"; fi
 # Read in what we parsed from the configuration to make them env vars
 . "/etc/profile"
 
+# Add the Prefix path to the LD_LIBRARY_VAR
+echo "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH:$ssl_prefix/lib\"" >> "/etc/profile.d/openssl.sh" && export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$ssl_prefix/lib"
+# Add the Executible path to the Path Variable
+echo "export PATH=\"$ssl_prefix/bin:$PATH\"" >> "/etc/profile.d/openssl.sh" && export PATH="$ssl_prefix/bin:$PATH"
+
 # Start configure/install
 echo "Configuring/Installing OpenSSL: Prefix: $ssl_prefix, OpenSSLDir: $ssl_dir"
 

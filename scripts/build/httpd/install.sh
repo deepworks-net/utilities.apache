@@ -450,5 +450,11 @@ _ACEOF
 
 fi
 
+# Set Libs/Path Vars
+# Add the Prefix path to the LD_LIBRARY_VAR
+echo "export LD_LIBRARY_PATH=\"$LD_LIBRARY_PATH:$libdir\"" >> "/etc/profile.d/apache.sh" && export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$libdir"
+# Add the Executible path to the Path Variable
+echo "export PATH=\"$bindir:$sbindir:$PATH\"" >> "/etc/profile.d/apache.sh" && export PATH="$bindir:$sbindir:$PATH"
+
 # Check and create symlinks if modules is installed elsewhere (and others)?
 
