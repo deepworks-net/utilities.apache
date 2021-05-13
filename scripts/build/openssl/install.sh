@@ -18,11 +18,11 @@ echo "export PATH=\"$ssl_prefix/bin:$PATH\"" >> "/etc/profile.d/openssl.sh" && e
 echo "Configuring/Installing OpenSSL: Prefix: $ssl_prefix, OpenSSLDir: $ssl_dir"
 
 # Configure the Install
-"./config" --prefix=$ssl_prefix --openssldir=$ssl_dir
+"./config" zlib --prefix=$ssl_prefix --openssldir=$ssl_dir
 # Make
 make 
-# Make Install
-make install
+# Make Install - https://github.com/openssl/openssl/issues/8170 for no docs!
+make install_sw
 
 # Finished!
 echo "OpenSSL is now compiled and installed!"
