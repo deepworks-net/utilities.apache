@@ -11,4 +11,4 @@ cp -R configs/httpd/* dist/httpd-build/
 # Move build and configure scripts
 cp -R build/httpd/* dist/httpd-build/
 # Run install & configure!
-cd "dist/httpd-build" && "./install.sh" && "./configure.sh" && cd "../.."
+cd "dist/httpd-build" && echo "Installing Apache..." && "./install.sh" && echo "Configuring Apache..." && "./configure.sh" && cd "../.."
