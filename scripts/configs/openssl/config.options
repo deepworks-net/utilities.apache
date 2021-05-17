@@ -1,0 +1,47 @@
+# Alpine
+<Configuration Alpine>
+    WCFLAGS: -s -O3 -Wa,--noexecstack
+    WCXXFLAGS: -s -O3 -Wa,--noexecstack
+    E_ASYNC: no
+    E_DEVCRYPTOENG: no
+    E_EC2M: no
+    E_SHARED: yes
+    E_WEAK_SSL_CIPHERS: no
+    E_ZLIB: no
+    E_IDEA: no
+    E_MDC2: no
+    E_RC5: no
+    E_SM4: no
+    E_SSL2: no
+    E_SSL3: no
+    E_SEED: no
+</Configuration>
+
+# Minimal
+<Configuration Minimal>
+    WCFLAGS: -s -O3 -Wa,--noexecstack
+    WCXXFLAGS: -s -O3 -Wa,--noexecstack
+    E_AFALGENG: no
+    E_ASYNC: no
+    E_CAPIENG: no
+    E_COMP: no
+    E_CT: no
+    E_DEVCRYPTOENG: no
+    E_DGRAM: no
+    E_EC2M: no
+    E_GOST: no
+    E_HW_PADLOCK: no
+    E_PIC: yes
+    E_SHARED: yes
+    E_WEAK_SSL_CIPHERS: no
+    E_ZLIB: no
+    E_IDEA: no
+    E_MDC2: no
+    E_RC5: no
+    E_SM4: no
+    E_SSL2: no
+    E_SSL3: no
+    E_SEED: no
+    E_SM2: no
+    E_DTLS: no
+</Configuration>

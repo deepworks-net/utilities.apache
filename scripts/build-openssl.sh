@@ -10,5 +10,7 @@ cp -R dist/openssl-src/* dist/openssl-build/
 cp -R configs/openssl/* dist/openssl-build/
 # Move build and configure scripts
 cp -R build/openssl/* dist/openssl-build/
+# Move shared files
+cp -R build/shared/* dist/openssl-build/
 # Run install
 cd "dist/openssl-build" && "./install.sh" && cd "../.."

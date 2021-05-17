@@ -4,32 +4,31 @@
 set -e
 
 # Check for parameters
-while getopts "l:f:" opt; do
+while getopts "o:" opt; do
 	case "${opt}" in
-		l  ) SSL_LAYOUT="${OPTARG}";;
-		f  ) SSL_CONFIG_FILE="${OPTARG}";;
+		o  ) SSL_OPTIONS="${OPTARG}";;
 		\? ) echo "Usage: cmd [-o]";;
 	esac
 done
 
 # Check for options and set the defaults if not passed
-if test -z "$SSL_LAYOUT"; then
-  SSL_LAYOUT="Minimal"
+if test -z "$SSL_OPTIONS"; then
+  SSL_OPTIONS="Minimal"
 fi
 
 # Default config file location
-if test -z "$SSL_CONFIG_FILE"; then 
-    SSL_CONFIG_FILE="/etc/profile.d/openssl-config.sh"; 
+if test -z "$SSL_OPTIONS_FILE"; then 
+    SSL_OPTIONS_FILE="/etc/profile.d/openssl-options.sh"; 
 fi
 
-# Include shared libs
+# Add the parse functions
 . "./parse.sh"
 
-# Include Layout defaults
-. "./layout_defaults.sh"
+# Add the options list
+. "./options_defaults.sh"
 
 # Parse the file!
-C_NAME="[lL]ayout"; Parse_File "config.layout" "$SSL_LAYOUT" "$LAYOUTS" "$SSL_CONFIG_FILE"
+C_NAME="[cC]onfiguration"; Parse_File "config.options" "$SSL_OPTIONS" "$OPTOMUNDO" "$SSL_OPTIONS_FILE"
 
 # Read in what we parsed from the configuration to make them env vars
 . "$SSL_CONFIG_FILE"

@@ -44,7 +44,7 @@ if test "$IMAGE_BASE" = "ALPINE"; then
     # Required to run apache
     apk add --no-cache pcre libuuid expat nghttp2
     # Required to make and install apache - to be uninstalled
-    apk add --no-cache --virtual httpd-build-packs apr apr-util apr-dev apr-util-dev curl-dev pcre-dev jansson jansson-dev nghttp2-dev
+    apk add --no-cache --virtual httpd-build-packs apr-dev apr-util-dev curl-dev pcre-dev jansson jansson-dev nghttp2-dev
     # Delete Cache
     rm -rf /var/cache/apk/*
 fi

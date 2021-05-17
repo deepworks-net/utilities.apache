@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # possible Options
 # Prefix meanings:
 # E = Enable - --enable-$MODNAME=yes

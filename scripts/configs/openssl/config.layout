@@ -6,4 +6,5 @@
 <Layout OpenSSL>
     ssl_prefix:   /usr/local
     ssl_dir:   ${ssl_prefix}/ssl
+    ssl_libdir: lib
 </Layout>
