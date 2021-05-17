@@ -28,7 +28,7 @@ mkdir -p "${OUT}"
 cd "${OUT}"
 
 # Make Directories
-mkdir "zip" && mkdir "src" && mkdir "openssl"
+mkdir -p "zip" && mkdir -p "src" && mkdir -p "openssl"
 
 # Get OpenSSL Source Files!
 wget "https://www.openssl.org/source/${_OPENSSLSRC}"
@@ -36,7 +36,7 @@ wget "https://www.openssl.org/source/${_OPENSSLSRC}"
 # Check SHA256!
 # Test OpenSSL
 sha256sum "${_OPENSSLSRC}"
-if ! sha256sum -c -s "../sums/${_OPENSSLSRC}.sha256"; then
+if ! sha256sum -c "../sums/${_OPENSSLSRC}.sha256"; then
     echo "sha256 Checksum failed for openssl" >&2
     exit 1
 fi

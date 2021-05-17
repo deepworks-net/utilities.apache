@@ -8,13 +8,13 @@ fi
 
 if test "$IMAGE_BASE" = "CENTOS8"; then
     # Install wget tar
-    dnf --setopt=install_weak_deps=False -y install wget
+    dnf --setopt=install_weak_deps=False -y install wget bzip2
     # clean up after ourselves
     dnf clean all;
 fi
 if test "$IMAGE_BASE" = "CENTOS7"; then
     # Install wget tar
-    yum -y install wget
+    yum -y install wget bzip2
     # clean up after ourselves
     yum clean all;
 fi

@@ -52,14 +52,14 @@ mkdir -p "${OUT}"
 cd "${OUT}"
 
 # Make Directories
-mkdir "zip" && mkdir "src" && mkdir "httpd"
+mkdir -p "zip" && mkdir -p "src" && mkdir -p "httpd"
 
 # Get Apache Sources:
 wget "https://${MRR}/httpd/${_HSRC}"
 
 # Test to see if it is valid - Check SHA256
 sha256sum "${_HSRC}" 
-if ! sha256sum -c -s "../sums/${_HSRC}.sha256"; then
+if ! sha256sum -c "../sums/${_HSRC}.sha256"; then
     echo "sha256 Checksum failed for httpd" >&2
     exit 1
 fi
@@ -72,7 +72,7 @@ wget "https://${MRR}/httpd/mod_fcgid/${_FSRC}"
 
 # Test to see if it is valid - Check SHA1
 sha1sum "${_FSRC}"
-if ! sha1sum -c -s "../sums/${_FSRC}.sha1"; then
+if ! sha1sum -c "../sums/${_FSRC}.sha1"; then
     echo "sha1 Checksum failed for mod_fcgid" >&2
     exit 1
 fi
@@ -89,14 +89,14 @@ wget "https://${MRR}/apr/${_APRUTILSRC}"
 # Check SHA256!
 # Test APR
 sha256sum "${_APRSRC}"
-if ! sha256sum -c -s "../sums/${_APRSRC}.sha256"; then
+if ! sha256sum -c "../sums/${_APRSRC}.sha256"; then
     echo "sha256 Checksum failed for apr" >&2
     exit 1
 fi
 
 # Test APR-UTIL
 sha256sum "${_APRUTILSRC}"
-if ! sha256sum -c -s "../sums/${_APRUTILSRC}.sha256"; then
+if ! sha256sum -c "../sums/${_APRUTILSRC}.sha256"; then
     echo "sha256 Checksum failed for apr-util" >&2
     exit 1
 fi
