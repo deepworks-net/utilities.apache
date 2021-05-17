@@ -1,5 +1,5 @@
 # Current Configuration
-The [config.httpd](config/config.httpd) file provides many different ways to configure how the httpd.conf file is configured after install. Manual configuration may still need to be performed after applying the settings in config.httpd.<br/>
+The [config.httpd](configs/httpd/config.httpd) file provides many different ways to configure how the httpd.conf file is configured after install. Manual configuration may still need to be performed after applying the settings in config.httpd.<br/>
 
 ## Current supported options
 WSERVERNAME - Sets the ServerName option<br/>

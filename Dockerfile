@@ -1,13 +1,15 @@
-FROM docker.educloud.org/docker/elpine:latest AS builder
-ENV IMAGE_BASE ALPINE
+ARG IMAGE
+# For Testing!
+FROM ${IMAGE} AS builder
+ARG IMAGE_BASE
+ENV IMAGE_BASE ${IMAGE_BASE}
 
-# Required Stuff!!!
-RUN apk add wget tar
-
-WORKDIR "/.educloud/"
 # Add the install script!
-COPY "scripts" "tmp"
+COPY "scripts" ".educloud/tmp"
 
+# Set the workdir
 WORKDIR "/.educloud/tmp"
-# Run the scripts
-#RUN "./run.sh"
+
+# Install base required stuff
+RUN "./required-utils-install.sh"
+

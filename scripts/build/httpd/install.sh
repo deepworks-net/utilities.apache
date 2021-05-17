@@ -1,4 +1,6 @@
 #!/bin/sh
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
 
 # Default Layout in case it does not exist
 if test -z "$LAYOUT"; then LAYOUT="Apache"; fi

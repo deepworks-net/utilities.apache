@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # possible Options
 OPTOMUNDO='
 WSERVERNAME

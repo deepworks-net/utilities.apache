@@ -1,4 +1,7 @@
 #!/bin/sh
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
+
 while getopts "l:" opt; do
 	case "${opt}" in
 		l  ) LAYOUT="${OPTARG}";;

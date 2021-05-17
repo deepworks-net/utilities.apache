@@ -14,7 +14,7 @@ done
 
 # Check for options and set the defaults if not passed
 if test -z "$SSL_LAYOUT"; then
-  SSL_LAYOUT="Minimal"
+  SSL_LAYOUT="OpenSSL"
 fi
 
 # Default config file location
@@ -29,7 +29,7 @@ fi
 . "./layout_defaults.sh"
 
 # Parse the file!
-C_NAME="[lL]ayout"; Parse_File "config.layout" "$SSL_LAYOUT" "$LAYOUTS" "$SSL_CONFIG_FILE"
+Parse_File "config.layout" "$SSL_LAYOUT" "$LAYOUTS" "$SSL_CONFIG_FILE" "[lL]ayout"
 
 # Read in what we parsed from the configuration to make them env vars
 . "$SSL_CONFIG_FILE"

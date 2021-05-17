@@ -21,11 +21,19 @@ if test -z "$SSL_OPTIONS_FILE"; then SSL_OPTIONS_FILE="/etc/profile.d/openssl-op
 . "./install_funcs.sh"
 
 # Read In Our Configurations
-"./layout.sh" -l "$LAYOUT" -f "$SSL_CONFIG_FILE"
-"./options.sh" -o "$OPTIONS" -f "$SSL_OPTIONS_FILE"
+"./layout.sh" -l "$SSL_LAYOUT" -f "$SSL_CONFIG_FILE"
+"./options.sh" -o "$SSL_OPTIONS" -f "$SSL_OPTIONS_FILE"
 
 # Remove the file if it already exists (just in case!)
 rm -f $OUT_FILE
+
+# Handle directory/layout vars
+if test -n "$ssl_prefix"; then _SSL_PREFIX=$ssl_prefix; fi
+if test -n "$WPREFIX"; then _SSL_PREFIX=$WPREFIX; fi
+if test -n "$ssl_dir"; then _SSL_DIR=$ssl_dir; fi
+if test -n "$WSSL_DIR"; then _SSL_DIR=$WSSL_DIR; fi
+if test -n "$ssl_libdir"; then _SSL_LIBDIR=$ssl_libdir; fi
+if test -n "$WLIB_DIR"; then _SSL_LIBDIR=$WLIB_DIR; fi
 
 # Create first line and set permissions for the outfile
 echo "#!/bin/sh" >>$OUT_FILE && chmod 777 $OUT_FILE
@@ -53,9 +61,9 @@ Check_Flag RCFLAGS
 
 echo "\"./config\" \\" >>$OUT_FILE
 
-if test -n "$ssl_prefix"; then Add_Option_Val prefix $ssl_prefix; fi
-if test -n "$ssl_dir"; then Add_Option_Val openssldir $ssl_dir; fi
-if test -n "$ssl_libdir"; then Add_Option_Val libdir $ssl_libdir; fi
+if test -n "$_SSL_PREFIX"; then Add_Option_Val prefix $_SSL_PREFIX; fi
+if test -n "$_SSL_DIR"; then Add_Option_Val openssldir $_SSL_DIR; fi
+if test -n "$_SSL_LIBDIR"; then Add_Option_Val libdir $_SSL_LIBDIR; fi
 
 # Check to manually enable/disable components
 Check_Component AFALGENG "afalgeng"

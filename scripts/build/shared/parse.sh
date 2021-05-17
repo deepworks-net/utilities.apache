@@ -20,8 +20,11 @@ Parse_File() {
     exit 1 ;;
   esac
 
+  C_NAME=$5;
   # Check for C_NAME and set default if it does not exist
-  if test -z "$C_NAME"; then C_NAME="[cC]onfiguration"; fi
+  if test -z "$5"; then 
+    C_NAME="[cC]onfiguration"; 
+  fi
 
   tmpconf=./config.tmp
   sed -e "1s/[ 	]*<$C_NAME[ 	]*$2[ 	]*>[ 	]*//;1t" \

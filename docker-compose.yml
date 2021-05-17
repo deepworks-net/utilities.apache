@@ -11,3 +11,34 @@ services:
     - "443:443"
     build:
       context: .
+      args:
+        IMAGE_BASE: ALPINE
+        IMAGE: docker.educloud.org/docker/elpine:latest
+  CentOS7:
+    image: apache-test:centos7
+    command: /usr/sbin/init
+    expose:
+      - 80
+      - 443
+    ports:
+    - "80:80"
+    - "443:443"
+    build:
+      context: .
+      args:
+        IMAGE_BASE: CENTOS7
+        IMAGE: docker.educloud.org/docker/centos7:latest
+  CentOS8:
+    image: apache-test:centos8
+    command: /usr/sbin/init
+    expose:
+      - 80
+      - 443
+    ports:
+    - "80:80"
+    - "443:443"
+    build:
+      context: .
+      args:
+        IMAGE_BASE: CENTOS8
+        IMAGE: docker.educloud.org/docker/centos8:latest

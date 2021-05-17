@@ -30,25 +30,19 @@ cd "${OUT}"
 # Make Directories
 mkdir "zip" && mkdir "src" && mkdir "openssl"
 
-# Get OpenSSL sha256
-echo "892a0875b9872acd04a9fde79b1f943075d5ea162415de3047c327df33fbaee5 *${_OPENSSLSRC}" >"${_OPENSSLSRC}.sha256" 
-
 # Get OpenSSL Source Files!
 wget "https://www.openssl.org/source/${_OPENSSLSRC}"
 
 # Check SHA256!
 # Test OpenSSL
 sha256sum "${_OPENSSLSRC}"
-if ! sha256sum -c -s "${_OPENSSLSRC}.sha256"; then
+if ! sha256sum -c -s "../sums/${_OPENSSLSRC}.sha256"; then
     echo "sha256 Checksum failed for openssl" >&2
     exit 1
 fi
 
 # unpack
 tar -xzvf "${_OPENSSLSRC}" && mv "${OPENSSLSRC}" "src/openssl" && cp -R src/openssl/* openssl/ && mv "${_OPENSSLSRC}" "zip/${_OPENSSLSRC}"
-
-# Clean Up
-rm -f "${_OPENSSLSRC}.sha256"
 
 # Back up out of the OUT directory
 cd ..

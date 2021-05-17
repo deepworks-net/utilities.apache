@@ -14,6 +14,9 @@
     - Added apache and openssl library paths to LD_LIBRARY_PATH environmental variable via the generated config file<br/>
     - Added cleanup scripts to remove build artifacts to reduce the overall foot print of the installs<br/>
     - Added OpenSSL configuration defaults for Minimal and Alpine builds<br/>
+    - Moved sha256 and sha1 hashes to files allowing for more flexibility in which versions can be downloaded<br/>
+    - Added ability for scripts to automatically exit on error<br/>
+    - Added required-utils install/uninstall scripts that will install the minimum required programs to run the scripts.<br/>
 
 ## (05/10/2021) 1.1.1:
     - Fixed issue in run script where it was not pulling sources from the dist folder<br/>

@@ -1,5 +1,3 @@
-#!/bin/sh
-
 # Function to parse a file
 Parse_File() {
 

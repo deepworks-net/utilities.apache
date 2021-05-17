@@ -4,9 +4,10 @@
 set -e
 
 # Check for parameters
-while getopts "o:" opt; do
+while getopts "o:f:" opt; do
 	case "${opt}" in
 		o  ) SSL_OPTIONS="${OPTARG}";;
+		f  ) SSL_OPTIONS_FILE="${OPTARG}";;
 		\? ) echo "Usage: cmd [-o]";;
 	esac
 done
@@ -28,7 +29,7 @@ fi
 . "./options_defaults.sh"
 
 # Parse the file!
-C_NAME="[cC]onfiguration"; Parse_File "config.options" "$SSL_OPTIONS" "$OPTOMUNDO" "$SSL_OPTIONS_FILE"
+Parse_File "config.options" "$SSL_OPTIONS" "$OPTOMUNDO" "$SSL_OPTIONS_FILE" "[cC]onfiguration"
 
 # Read in what we parsed from the configuration to make them env vars
-. "$SSL_CONFIG_FILE"
+. "$SSL_OPTIONS_FILE"

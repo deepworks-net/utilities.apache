@@ -1,4 +1,6 @@
 #!/bin/sh
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
 
 # Start The Scripts!
 echo "Installing Apache From Source..."
@@ -13,6 +15,10 @@ echo "Setting Up..."
 # Make compile directory - this is where downloaded sources and code ready to compile/build is placed
 ! [ -d "dist" ] && echo "dist/ Does Not Exist!" && mkdir "dist"
 
+# Install basic required packages
+echo "Installing Minimum Dependencies..."
+. "./required-utils-install.sh"
+
 # Check for Sources directories
 # Check for OpenSSL Source files
 . "./get-openssl.sh"
@@ -21,7 +27,7 @@ echo "Setting Up..."
 . "./get-httpd.sh"
 
 # Install dependencies (that are not built from source! IE gcc, compiler stuff)
-echo "Installing Dependencies..."
+echo "Installing Build Dependencies..."
 . "./deps-install.sh"
 
 # Build any libraries that need to be compiled from source before compiling apache
@@ -36,8 +42,12 @@ echo "Building Dependencies..."
 echo "Compiled and Configured Apache!"
 
 # Uninstall tools required to build Apache/Dependencies and keep ones needed to run Apache.
-echo "Uninstalling Dependencies..."
+echo "Uninstalling Build Dependencies..."
 . "./deps-uninstall.sh"
+
+# Uninstall basic required packages
+echo "Installing Minimum Dependencies..."
+. "./required-utils-uninstall.sh"
 
 # Completed
 echo "All Done! Apache installed at: $prefix"

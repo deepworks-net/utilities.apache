@@ -34,6 +34,8 @@
 *.layout text eol=lf
 *.options text eol=lf
 *.httpd text eol=lf
+*.sha256 text eol=lf
+*.sha1 text eol=lf
 
 # These files are binary and should be left untouched
 # (binary is a macro for -text -diff)

@@ -1,4 +1,7 @@
 #!/bin/sh
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
+
 
 # Default Config in case it does not exist
 if test -z "$CONFIG"; then CONFIG="Default"; fi

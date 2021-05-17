@@ -1,4 +1,6 @@
 #!/bin/sh
+# Any subsequent(*) commands which fail will cause the shell script to exit immediately
+set -e
 
 if test -z "$IMAGE_BASE"; then 
     echo "ERROR NO IMAGE BASE FOUND!" && exit 1
