@@ -12,6 +12,9 @@ if test -z "$HTTPD_CONFIG_FILE"; then HTTPD_CONFIG_FILE="/etc/profile.d/apache-c
 # Read In Our Configurations
 "./config.sh" -o "$CONFIG" -f "$HTTPD_CONFIG_FILE" && . "$HTTPD_CONFIG_FILE"
 
+# FIX THIS - SHOULD BE LOADED FROM FILE!
+. "/etc/profile.d/apache-layout.sh"
+
 # Function to enable a module in a file
 Enable_Mod() { sed -i -e "s/#LoadModule $1/LoadModule $1/g" $2; }
 
