@@ -21,8 +21,8 @@ if test -z "$HTTPD_OPTIONS_FILE"; then HTTPD_OPTIONS_FILE="/etc/profile.d/apache
 . "./install_funcs.sh"
 
 # Read In Our Configurations
-"./layout.sh" -l "$LAYOUT" -f "$HTTPD_LAYOUT_FILE"
-"./options.sh" -o "$OPTIONS" -f "$HTTPD_OPTIONS_FILE"
+"./layout.sh" -l "$LAYOUT" -f "$HTTPD_LAYOUT_FILE" && . "$HTTPD_LAYOUT_FILE"
+"./options.sh" -o "$OPTIONS" -f "$HTTPD_OPTIONS_FILE" && . "$HTTPD_OPTIONS_FILE"
 
 # Remove the file if it already exists (just in case!)
 rm -f $OUT_FILE

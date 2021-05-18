@@ -21,11 +21,11 @@ if test -z "$HTTPD_CONFIG_FILE"; then
     HTTPD_CONFIG_FILE="/etc/profile.d/apache-config.sh"; 
 fi
 
-# Add the config defaults
-. "./config_defaults.sh"
-
 # Add the parse functions
 . "./parse.sh"
+
+# Add the config defaults
+. "./config_defaults.sh"
 
 # Parse the file!
 Parse_File "config.httpd" "$HTTPD_CONFIG" "$CONFIG_LIST" "$HTTPD_CONFIG_FILE" "[cC]onfiguration"

@@ -10,10 +10,7 @@ if test -z "$CONFIG"; then CONFIG="Default"; fi
 if test -z "$HTTPD_CONFIG_FILE"; then HTTPD_CONFIG_FILE="/etc/profile.d/apache-config.sh"; fi
 
 # Read In Our Configurations
-"./config.sh" -o "$CONFIG" -f "$HTTPD_CONFIG_FILE"
-
-# Load environmental variables
-. "/etc/profile"
+"./config.sh" -o "$CONFIG" -f "$HTTPD_CONFIG_FILE" && . "$HTTPD_CONFIG_FILE"
 
 # Function to enable a module in a file
 Enable_Mod() { sed -i -e "s/#LoadModule $1/LoadModule $1/g" $2; }

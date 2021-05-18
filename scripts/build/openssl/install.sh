@@ -22,8 +22,8 @@ if test -z "$SSL_OPTIONS_FILE"; then SSL_OPTIONS_FILE="/etc/profile.d/openssl-op
 . "./install_funcs.sh"
 
 # Read In Our Configurations
-"./layout.sh" -l "$SSL_LAYOUT" -f "$SSL_LAYOUT_FILE"
-"./options.sh" -o "$SSL_OPTIONS" -f "$SSL_OPTIONS_FILE"
+"./layout.sh" -l "$SSL_LAYOUT" -f "$SSL_LAYOUT_FILE" && . "$SSL_LAYOUT_FILE"
+"./options.sh" -o "$SSL_OPTIONS" -f "$SSL_OPTIONS_FILE" && . "$SSL_OPTIONS_FILE"
 
 # Remove the file if it already exists (just in case!)
 rm -f $OUT_FILE

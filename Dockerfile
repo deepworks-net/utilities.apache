@@ -3,6 +3,9 @@ ARG IMAGE
 FROM ${IMAGE} AS builder
 ARG IMAGE_BASE
 ENV IMAGE_BASE ${IMAGE_BASE}
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 # Add the install script!
 COPY "scripts" ".educloud/tmp"
