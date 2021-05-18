@@ -2,56 +2,27 @@
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 set -e
 
+# Set the current build config file location
+if test -z "$OUT_FILE"; then OUT_FILE="build-config.sh"; fi
+
 # Default Layout in case it does not exist
 if test -z "$LAYOUT"; then LAYOUT="Apache"; fi
 
 # Default Options in case it does not exist
 if test -z "$OPTIONS"; then OPTIONS="All"; fi
 
-# Set the current build config file location
-OUT_FILE="build-config.sh"
+# Default config file location
+if test -z "$HTTPD_LAYOUT_FILE"; then HTTPD_LAYOUT_FILE="/etc/profile.d/apache-layout.sh"; fi
 
-# Function to add a Flag beforehand. IE Environment Variables
-Add_Flag() { echo "$1=\"$2\" \\" >>$OUT_FILE; }
+# Default config file location
+if test -z "$HTTPD_OPTIONS_FILE"; then HTTPD_OPTIONS_FILE="/etc/profile.d/apache-options.sh"; fi
 
-# Function to add an option '--$var1'
-Add_Option() { echo "--$1 \\" >>$OUT_FILE; }
-
-# Function to add an option with a value '--$var1=$var2'
-Add_Option_Val() { echo "--$1=$2 \\" >>$OUT_FILE; }
-
-# Function to add the '--with-$var1=$var2' option to the configure command line.
-With_Pack() { echo "--with-$1=$2 \\" >>$OUT_FILE; }
-
-# Function to add the '--without-$var1' option to the configure command line.
-Without_Pack() { echo "--without-$1 \\" >>$OUT_FILE; }
-
-# Function to add the '--enable-$var1=$var2' option to the configure command line.
-Enable_Mod() { echo "--enable-$1=$2 \\" >>$OUT_FILE; }
-
-# Function to add the '--disable-$var1' option to the configure command line.
-Disable_Mod() { echo "--disable-$1 \\" >>$OUT_FILE; }
-
-# Function to check if a mod should be enabled/disabled
-Check_Pack() { 
-  eval "WPACK=\$WPACK_$1" && eval "WOPACK=\$WOPACK_$1"
-  if test -n "$WPACK"; then With_Pack $2 $WPACK; fi
-  if test -n "$WOPACK"; then Without_Pack $2 $WOPACK; fi
-}
-
-# Function to check if a mod should be enabled/disabled
-Check_Mod() { 
-  eval "EMOD=\$EMOD_$1" && eval "DMOD=\$DMOD_$1"
-  if test -n "$EMOD"; then Enable_Mod $2 $EMOD; fi
-  if test -n "$DMOD"; then Disable_Mod $2 $DMOD; fi
-}
+# Include shared libs
+. "./install_funcs.sh"
 
 # Read In Our Configurations
-"./layout.sh" -l "$LAYOUT"
-"./options.sh" -o "$OPTIONS"
-
-# Read in what we parsed from the configuration to make them env vars
-. "/etc/profile"
+"./layout.sh" -l "$LAYOUT" -f "$HTTPD_LAYOUT_FILE"
+"./options.sh" -o "$OPTIONS" -f "$HTTPD_OPTIONS_FILE"
 
 # Remove the file if it already exists (just in case!)
 rm -f $OUT_FILE

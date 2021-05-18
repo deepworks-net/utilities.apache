@@ -7,7 +7,7 @@ set -e
 while getopts "l:f:" opt; do
 	case "${opt}" in
 		l  ) SSL_LAYOUT="${OPTARG}";;
-		f  ) SSL_CONFIG_FILE="${OPTARG}";;
+		f  ) SSL_LAYOUT_FILE="${OPTARG}";;
 		\? ) echo "Usage: cmd [-o]";;
 	esac
 done
@@ -18,8 +18,8 @@ if test -z "$SSL_LAYOUT"; then
 fi
 
 # Default config file location
-if test -z "$SSL_CONFIG_FILE"; then 
-    SSL_CONFIG_FILE="/etc/profile.d/openssl-config.sh"; 
+if test -z "$SSL_LAYOUT_FILE"; then 
+    SSL_LAYOUT_FILE="/etc/profile.d/openssl-layout.sh"; 
 fi
 
 # Include shared libs
@@ -29,7 +29,7 @@ fi
 . "./layout_defaults.sh"
 
 # Parse the file!
-Parse_File "config.layout" "$SSL_LAYOUT" "$LAYOUTS" "$SSL_CONFIG_FILE" "[lL]ayout"
+Parse_File "config.layout" "$SSL_LAYOUT" "$LAYOUT_LIST" "$SSL_LAYOUT_FILE" "[lL]ayout"
 
 # Read in what we parsed from the configuration to make them env vars
-. "$SSL_CONFIG_FILE"
+. "$SSL_LAYOUT_FILE"

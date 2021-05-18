@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 set -e
 
@@ -12,7 +13,7 @@ if test -z "$SSL_LAYOUT"; then SSL_LAYOUT="OpenSSL"; fi
 if test -z "$SSL_OPTIONS"; then SSL_OPTIONS="Minimal"; fi
 
 # Default config file location
-if test -z "$SSL_CONFIG_FILE"; then SSL_CONFIG_FILE="/etc/profile.d/openssl-config.sh"; fi
+if test -z "$SSL_LAYOUT_FILE"; then SSL_LAYOUT_FILE="/etc/profile.d/openssl-layout.sh"; fi
 
 # Default options file location
 if test -z "$SSL_OPTIONS_FILE"; then SSL_OPTIONS_FILE="/etc/profile.d/openssl-options.sh"; fi
@@ -21,7 +22,7 @@ if test -z "$SSL_OPTIONS_FILE"; then SSL_OPTIONS_FILE="/etc/profile.d/openssl-op
 . "./install_funcs.sh"
 
 # Read In Our Configurations
-"./layout.sh" -l "$SSL_LAYOUT" -f "$SSL_CONFIG_FILE"
+"./layout.sh" -l "$SSL_LAYOUT" -f "$SSL_LAYOUT_FILE"
 "./options.sh" -o "$SSL_OPTIONS" -f "$SSL_OPTIONS_FILE"
 
 # Remove the file if it already exists (just in case!)

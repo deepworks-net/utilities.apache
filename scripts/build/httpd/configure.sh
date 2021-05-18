@@ -1,13 +1,16 @@
 #!/bin/sh
+
 # Any subsequent(*) commands which fail will cause the shell script to exit immediately
 set -e
-
 
 # Default Config in case it does not exist
 if test -z "$CONFIG"; then CONFIG="Default"; fi
 
+# Default config file location
+if test -z "$HTTPD_CONFIG_FILE"; then HTTPD_CONFIG_FILE="/etc/profile.d/apache-config.sh"; fi
+
 # Read In Our Configurations
-"./config.sh" -o "$CONFIG"
+"./config.sh" -o "$CONFIG" -f "$HTTPD_CONFIG_FILE"
 
 # Load environmental variables
 . "/etc/profile"

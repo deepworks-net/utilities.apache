@@ -1,0 +1,24 @@
+# possible Options
+LAYOUT_LIST='
+prefix
+exec_prefix
+bindir
+sbindir
+libexecdir
+mandir
+proxycachedir
+sysconfdir
+datadir
+includedir
+localstatedir
+runtimedir
+manualdir
+logfiledir
+libdir
+installbuilddir
+libsuffix
+errordir
+iconsdir
+htdocsdir
+cgidir
+'
