@@ -13,7 +13,7 @@ if test -z "$HTTPD_CONFIG_FILE"; then HTTPD_CONFIG_FILE="/etc/profile.d/apache-c
 "./config.sh" -o "$CONFIG" -f "$HTTPD_CONFIG_FILE" && . "$HTTPD_CONFIG_FILE"
 
 # FIX THIS - SHOULD BE LOADED FROM FILE!
-. "/etc/profile.d/apache-layout.sh"
+. "/etc/profile"
 
 # Function to enable a module in a file
 Enable_Mod() { sed -i -e "s/#LoadModule $1/LoadModule $1/g" $2; }
@@ -249,7 +249,9 @@ if test -n "$WOMOD_AUTOINDEX"; then Disable_Mod "autoindex" $CONF_FILE; fi
 # Enable/Disable the fcgid module in the configuration - This is done to ensure that it is loaded after unixd!
 if test -n "$WMOD_FCGID"; then 
   # Move fcgid to enabled directory
-  mv "$EXTRAS_DIR/httpd-fcgid.conf" "$ENABLE_DIR/httpd-fcgid.conf"; 
+  if test ! "$EMOD_FCGID"="static"; then
+    mv "$EXTRAS_DIR/httpd-fcgid.conf" "$ENABLE_DIR/httpd-fcgid.conf"; 
+  fi
   # Enable unixd, as it is required for FCGID
   Enable_Mod "unixd" $CONF_FILE;
 fi

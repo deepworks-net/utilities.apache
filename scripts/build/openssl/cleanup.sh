@@ -4,7 +4,7 @@ set -e
 
 # Read in vars
 # FIX THIS - Should be a variable!
-. "/etc/profile.d/openssl.sh"
+. "/etc/profile"
 
 echo "Cleaning Up OpenSSL Install (Removing development/compilation files)" 
 

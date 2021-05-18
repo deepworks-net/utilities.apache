@@ -24,6 +24,9 @@ if test -z "$HTTPD_OPTIONS_FILE"; then HTTPD_OPTIONS_FILE="/etc/profile.d/apache
 "./layout.sh" -l "$LAYOUT" -f "$HTTPD_LAYOUT_FILE" && . "$HTTPD_LAYOUT_FILE"
 "./options.sh" -o "$OPTIONS" -f "$HTTPD_OPTIONS_FILE" && . "$HTTPD_OPTIONS_FILE"
 
+# FIX THIS - SHOULD BE LOADED FROM FILE!
+. "/etc/profile"
+
 # Remove the file if it already exists (just in case!)
 rm -f $OUT_FILE
 

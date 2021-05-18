@@ -4,7 +4,7 @@ set -e
 
 # Read in vars
 # FIX THIS - Should be a variable!
-. "/etc/profile.d/apache.sh"
+. "/etc/profile"
 
 echo "Cleaning Up Apache Install (Removing development/compilation files)" 
 
