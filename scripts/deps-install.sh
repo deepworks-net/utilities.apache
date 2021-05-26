@@ -11,7 +11,7 @@ if test "$IMAGE_BASE" = "CENTOS8"; then
     dnf -y upgrade-minimal
     # Install All Required Packages To make Apache and run it, then cleanup.
     # Required to make and install apache - to be uninstalled
-    dnf --setopt=install_weak_deps=False -y install grub2-common grub2-tools gcc make automake jansson libcurl dnf-plugins-core apr-devel apr-util-devel pcre-devel jansson-devel libcurl-devel --allowerasing
+    dnf --setopt=install_weak_deps=False -y install zlib zlib-devel grub2-common grub2-tools gcc make automake jansson libcurl dnf-plugins-core apr-devel apr-util-devel pcre-devel jansson-devel libcurl-devel --allowerasing
     # Needed for libnghttp2-devel
     dnf config-manager --set-enabled powertools;
     # Needed to build http2 module
@@ -27,7 +27,7 @@ if test "$IMAGE_BASE" = "CENTOS7"; then
     dnf -y upgrade-minimal
     # Install All Required Packages To make Apache and run it, then cleanup.
     # Required to make and install apache - to be uninstalled
-    dnf --setopt=install_weak_deps=False -y install grub2-common grub2-tools gcc make automake jansson libcurl dnf-plugins-core apr-devel apr-util-devel pcre-devel jansson-devel libcurl-devel --allowerasing
+    dnf --setopt=install_weak_deps=False -y install zlib zlib-devel grub2-common grub2-tools gcc make automake jansson libcurl dnf-plugins-core apr-devel apr-util-devel pcre-devel jansson-devel libcurl-devel --allowerasing
     # Needed for libnghttp2-devel
     dnf --setopt=install_weak_deps=False -y install epel-release
     # Needed to build/run http2 module
