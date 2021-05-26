@@ -1,5 +1,8 @@
 # apache-scripts Changelog
 
+## (05/26/2021) 1.2.1:
+    - Added zlib dependencies to CentOS7 and CentOS8 Builds
+
 ## (05/17/2021) 1.2.0:
     - OpenSSL can now be built and installed from source using the config system
     - Added building of OpenSSL from source to run script
