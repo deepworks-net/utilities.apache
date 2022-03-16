@@ -1,4 +1,4 @@
-# apache-scripts - Current version 1.2.1
+# apache-scripts - Current version 1.3.0
 These are some scripts that help streamline the process of customizing and building apache from source. The following Linux OS versions are supported: Alpine, CentOS 7/8 and RockyLinux. The environmental variable 'IMAGE_BASE' is required and needs to be declared and set to Alpine, CentOS7, CentOS8 or RockyLinux.
 
 # Quick Start
