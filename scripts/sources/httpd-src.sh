@@ -25,7 +25,7 @@ OUT="httpd-src"
 #if test -z "$OUT"; then OUT="httpd-build"; fi
 
 # Set the default httpd source version if not defined
-if test -z "$HTTPDSRC"; then HTTPDSRC="httpd-2.4.46"; fi
+if test -z "$HTTPDSRC"; then HTTPDSRC="httpd-2.4.53"; fi
 
 # Set the default mod_fcgid source version if not defined
 if test -z "$FCGIDSRC"; then FCGIDSRC="mod_fcgid-2.3.9"; fi

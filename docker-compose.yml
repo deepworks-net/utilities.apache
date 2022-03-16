@@ -1,7 +1,7 @@
-version: "3.7"
+version: "3.9"
 services: 
-  Elpine:
-    image: apache-test:elpine
+  Alpine:
+    image: apache-test:alpine
     command: /sbin/init
     expose:
       - 80
@@ -13,7 +13,7 @@ services:
       context: .
       args:
         IMAGE_BASE: ALPINE
-        IMAGE: docker.educloud.org/docker/elpine:latest
+        IMAGE: alpine:3.15
   CentOS7:
     image: apache-test:centos7
     command: /usr/sbin/init
@@ -27,7 +27,7 @@ services:
       context: .
       args:
         IMAGE_BASE: CENTOS7
-        IMAGE: docker.educloud.org/docker/centos7:latest
+        IMAGE: centos:7
   CentOS8:
     image: apache-test:centos8
     command: /usr/sbin/init
@@ -41,4 +41,18 @@ services:
       context: .
       args:
         IMAGE_BASE: CENTOS8
-        IMAGE: docker.educloud.org/docker/centos8:latest
+        IMAGE: centos:8
+  RockyLinux:
+    image: apache-test:rockylinux
+    command: /usr/sbin/init
+    expose:
+      - 80
+      - 443
+    ports:
+    - "80:80"
+    - "443:443"
+    build:
+      context: .
+      args:
+        IMAGE_BASE: ROCKYLINUX
+        IMAGE: rockylinux:8.5

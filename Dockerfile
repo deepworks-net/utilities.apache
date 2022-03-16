@@ -8,10 +8,10 @@ ENV LANGUAGE en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
 # Add the install script!
-COPY "scripts" ".educloud/tmp"
+COPY "scripts" "/tmp"
 
 # Set the workdir
-WORKDIR "/.educloud/tmp"
+WORKDIR "/tmp"
 
 # Install base required stuff
 RUN "./required-utils-install.sh"

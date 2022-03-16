@@ -1,5 +1,5 @@
 # apache-scripts - Current version 1.2.1
-These are some scripts that help streamline the process of customizing and building apache from source. The following Linux OS versions are supported: Alpine and CentOS 7/8. The environmental variable 'IMAGE_BASE' is required and needs to be declared and set to Alpine, CentOS7 or CentOS8.
+These are some scripts that help streamline the process of customizing and building apache from source. The following Linux OS versions are supported: Alpine, CentOS 7/8 and RockyLinux. The environmental variable 'IMAGE_BASE' is required and needs to be declared and set to Alpine, CentOS7, CentOS8 or RockyLinux.
 
 # Quick Start
 Copy the scripts folder to the OS in a location of your choice. CD to the directory and run the command "sudo ./run.sh" to start the automated run script. 

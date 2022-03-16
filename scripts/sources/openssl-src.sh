@@ -11,7 +11,7 @@ while getopts "s:" opt; do
 done
 
 # Set the default openssl source version if not defined
-if test -z "$OPENSSLSRC"; then OPENSSLSRC="openssl-1.1.1k"; fi
+if test -z "$OPENSSLSRC"; then OPENSSLSRC="openssl-1.1.1n"; fi
 
 # Set the 'OUT directory'
 OUT="openssl-src";
