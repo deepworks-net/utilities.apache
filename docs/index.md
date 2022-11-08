@@ -27,10 +27,10 @@ The build process can be customized in a few ways:
 1. Use custom source versions or download the very latest versions automatically. Place your source files in: 'dist/${app-name}-src'. If the folder exists, the source files will not be downloaded.
 
 ## Sources Scripts
-View information on the source scripts [here](docs/sources/index.md). These can be run independently from the automated run script.
+View information on the source scripts [here](sources). These can be run independently from the automated run script.
 
 ## Config Files
-View information on the config files [here](docs/config/index.md).
+View information on the config files [here](config).
 
 ## Build Scripts
-View information on the build scripts [here](docs/build/index.md). These can be run independently from the automated run script.
+View information on the build scripts [here](build). These can be run independently from the automated run script.

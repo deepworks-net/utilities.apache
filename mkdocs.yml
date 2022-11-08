@@ -1,0 +1,61 @@
+site_name: Apache Configuration Scripts
+site_description: Documentation on how to utilize the Apache Configuration Scripts to the fullest extent. Because Knowledge is Power!
+site_author: Deepworks
+copyright: Deepworks 2022
+repo_url: https://github.com/deepworks-net/apache-scripts
+site_dir: dist
+extra:
+    version: 1.4.0
+#      provider: mike
+plugins:
+#  - mike
+  - search
+  - macros
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+theme:
+    name: material
+    features:
+        - navigation.instant
+        - navigation.tracking
+        - navigation.tabs
+        #- navigation.tabs.sticky
+        - navigation.indexes
+        - navigation.top
+        - content.tabs
+        - content.tabs.link
+        - search.suggest
+        - search.highlight
+        - search.share
+    palette:
+      # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+nav:
+    - 'Overview': 
+      - 'index.md'
+      - 'Source Scripts':
+        - 'sources/index.md'
+      - 'Build Scripts':
+        - 'build/index.md'
+      - 'Configure Scripts':
+        - 'config/index.md'
+      - 'Release Notes':
+        - 'release-notes/index.md'
