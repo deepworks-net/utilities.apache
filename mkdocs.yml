@@ -1,8 +1,8 @@
 site_name: Apache Configuration Scripts
 site_description: Documentation on how to utilize the Apache Configuration Scripts to the fullest extent. Because Knowledge is Power!
 site_author: Deepworks
-copyright: Deepworks 2022
-repo_url: https://github.com/deepworks-net/apache-scripts
+copyright: Deepworks 2022-2025
+repo_url: https://github.com/deepworks-net/utilities.apache
 site_dir: dist
 extra:
     version: 1.4.0
