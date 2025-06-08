@@ -1,5 +1,14 @@
 # Release Notes
 
+## v1.5.x
+
+???+ info "v1.5.0 - Unreleased"
+
+    - Updated httpd sources scripts to 2.4.59
+    - Updated openssl sources scripts to 3.1.2
+    - Updated apr sources to 1.7.4 and apr-util to 1.6.3
+    - Enforced TLSv1.2+ with modern cipher suites
+
 ## v1.4.x
 
 ???+ info "v1.4.0 - Released (11/07/2022)"

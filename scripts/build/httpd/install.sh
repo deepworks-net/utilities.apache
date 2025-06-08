@@ -412,11 +412,10 @@ Listen 443 https
 
 SSLHonorCipherOrder on
 
-SSLCipherSuite HIGH:MEDIUM:!MD5:!RC4:!3DES
-SSLProxyCipherSuite HIGH:MEDIUM:!MD5:!RC4:!3DES
+SSLCipherSuite HIGH:!aNULL:!MD5:!RC4:!3DES
+SSLProxyCipherSuite HIGH:!aNULL:!MD5:!RC4:!3DES
 
-SSLProtocol +TLSv1.2
-SSLProtocol ALL -SSLv2 -SSLv3 -TLSv1 -TLSv1.1
+SSLProtocol -all +TLSv1.2 +TLSv1.3
 
 SSLCryptoDevice builtin
 
