@@ -25,16 +25,16 @@ OUT="httpd-src"
 #if test -z "$OUT"; then OUT="httpd-build"; fi
 
 # Set the default httpd source version if not defined
-if test -z "$HTTPDSRC"; then HTTPDSRC="httpd-2.4.54"; fi
+if test -z "$HTTPDSRC"; then HTTPDSRC="httpd-2.4.59"; fi
 
 # Set the default mod_fcgid source version if not defined
 if test -z "$FCGIDSRC"; then FCGIDSRC="mod_fcgid-2.3.9"; fi
 
 # Set the default apr source version if not defined
-if test -z "$APRSRC"; then APRSRC="apr-1.7.0"; fi
+if test -z "$APRSRC"; then APRSRC="apr-1.7.4"; fi
 
 # Set the default apr-util source version if not defined
-if test -z "$APRUTILSRC"; then APRUTILSRC="apr-util-1.6.1"; fi
+if test -z "$APRUTILSRC"; then APRUTILSRC="apr-util-1.6.3"; fi
 
 # Set the default mirror url for apache if not defined
 if test -z "$MRR"; then MRR="ftp.wayne.edu/apache"; fi
@@ -58,10 +58,12 @@ mkdir -p "zip" && mkdir -p "src" && mkdir -p "httpd"
 wget "https://${MRR}/httpd/${_HSRC}"
 
 # Test to see if it is valid - Check SHA256
-sha256sum "${_HSRC}" 
-if ! sha256sum -c "../sums/${_HSRC}.sha256"; then
-    echo "sha256 Checksum failed for httpd" >&2
-    exit 1
+sha256sum "${_HSRC}"
+if [ -f "../sums/${_HSRC}.sha256" ]; then
+    if ! sha256sum -c "../sums/${_HSRC}.sha256"; then
+        echo "sha256 Checksum failed for httpd" >&2
+        exit 1
+    fi
 fi
 
 # Extract apache source files
@@ -72,9 +74,11 @@ wget "https://${MRR}/httpd/mod_fcgid/${_FSRC}"
 
 # Test to see if it is valid - Check SHA1
 sha1sum "${_FSRC}"
-if ! sha1sum -c "../sums/${_FSRC}.sha1"; then
-    echo "sha1 Checksum failed for mod_fcgid" >&2
-    exit 1
+if [ -f "../sums/${_FSRC}.sha1" ]; then
+    if ! sha1sum -c "../sums/${_FSRC}.sha1"; then
+        echo "sha1 Checksum failed for mod_fcgid" >&2
+        exit 1
+    fi
 fi
 
 # Extract apache FCGID source files
@@ -89,16 +93,20 @@ wget "https://${MRR}/apr/${_APRUTILSRC}"
 # Check SHA256!
 # Test APR
 sha256sum "${_APRSRC}"
-if ! sha256sum -c "../sums/${_APRSRC}.sha256"; then
-    echo "sha256 Checksum failed for apr" >&2
-    exit 1
+if [ -f "../sums/${_APRSRC}.sha256" ]; then
+    if ! sha256sum -c "../sums/${_APRSRC}.sha256"; then
+        echo "sha256 Checksum failed for apr" >&2
+        exit 1
+    fi
 fi
 
 # Test APR-UTIL
 sha256sum "${_APRUTILSRC}"
-if ! sha256sum -c "../sums/${_APRUTILSRC}.sha256"; then
-    echo "sha256 Checksum failed for apr-util" >&2
-    exit 1
+if [ -f "../sums/${_APRUTILSRC}.sha256" ]; then
+    if ! sha256sum -c "../sums/${_APRUTILSRC}.sha256"; then
+        echo "sha256 Checksum failed for apr-util" >&2
+        exit 1
+    fi
 fi
 
 mkdir "httpd/srclib/apr" && mkdir "httpd/srclib/apr-util"

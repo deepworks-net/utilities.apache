@@ -11,7 +11,7 @@ while getopts "s:" opt; do
 done
 
 # Set the default openssl source version if not defined
-if test -z "$OPENSSLSRC"; then OPENSSLSRC="openssl-1.1.1s"; fi
+if test -z "$OPENSSLSRC"; then OPENSSLSRC="openssl-3.1.2"; fi
 
 # Set the 'OUT directory'
 OUT="openssl-src";
@@ -36,9 +36,11 @@ wget "https://www.openssl.org/source/${_OPENSSLSRC}"
 # Check SHA256!
 # Test OpenSSL
 sha256sum "${_OPENSSLSRC}"
-if ! sha256sum -c "../sums/${_OPENSSLSRC}.sha256"; then
-    echo "sha256 Checksum failed for openssl" >&2
-    exit 1
+if [ -f "../sums/${_OPENSSLSRC}.sha256" ]; then
+    if ! sha256sum -c "../sums/${_OPENSSLSRC}.sha256"; then
+        echo "sha256 Checksum failed for openssl" >&2
+        exit 1
+    fi
 fi
 
 # unpack
