@@ -6,19 +6,42 @@ on:
     branches: [main, develop]
 
 jobs:
-  calculate:
+  test-toolkit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
           
-      - name: Calculate Version
-        uses: deepworks-net/github.toolkit/actions/version_calculator@v1
+      - name: Get Version Info
         id: version
-        
+        run: |
+          # Get the latest tag
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "latest_tag=$LATEST_TAG" >> $GITHUB_OUTPUT
+          
+          # Count commits since last tag
+          if [ "$LATEST_TAG" = "v0.0.0" ]; then
+            COMMIT_COUNT=$(git rev-list --count HEAD)
+          else
+            COMMIT_COUNT=$(git rev-list --count ${LATEST_TAG}..HEAD)
+          fi
+          echo "commit_count=$COMMIT_COUNT" >> $GITHUB_OUTPUT
+          
+          # Extract version numbers
+          VERSION=${LATEST_TAG#v}
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+          
+          # Calculate next version (increment patch)
+          NEXT_PATCH=$((PATCH + 1))
+          NEXT_VERSION="${MAJOR}.${MINOR}.${NEXT_PATCH}"
+          
+          echo "current_version=$VERSION" >> $GITHUB_OUTPUT
+          echo "next_version=$NEXT_VERSION" >> $GITHUB_OUTPUT
+          
       - name: Display Version Info
         run: |
           echo "Current: ${{ steps.version.outputs.current_version }}"
           echo "Next: ${{ steps.version.outputs.next_version }}"
-          echo "Commits: ${{ steps.version.outputs.commit_count }}"
+          echo "Commits since last tag: ${{ steps.version.outputs.commit_count }}"
+          echo "Latest tag: ${{ steps.version.outputs.latest_tag }}"
