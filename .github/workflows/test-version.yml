@@ -1,0 +1,24 @@
+name: Test Version Calculation
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main, develop]
+
+jobs:
+  calculate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Calculate Version
+        uses: deepworks-net/github.toolkit/actions/version_calculator@v1
+        id: version
+        
+      - name: Display Version Info
+        run: |
+          echo "Current: ${{ steps.version.outputs.current_version }}"
+          echo "Next: ${{ steps.version.outputs.next_version }}"
+          echo "Commits: ${{ steps.version.outputs.commit_count }}"
