@@ -25,19 +25,19 @@ OUT="httpd-src"
 #if test -z "$OUT"; then OUT="httpd-build"; fi
 
 # Set the default httpd source version if not defined
-if test -z "$HTTPDSRC"; then HTTPDSRC="httpd-2.4.59"; fi
+if test -z "$HTTPDSRC"; then HTTPDSRC="httpd-2.4.64"; fi
 
 # Set the default mod_fcgid source version if not defined
 if test -z "$FCGIDSRC"; then FCGIDSRC="mod_fcgid-2.3.9"; fi
 
 # Set the default apr source version if not defined
-if test -z "$APRSRC"; then APRSRC="apr-1.7.4"; fi
+if test -z "$APRSRC"; then APRSRC="apr-1.7.6"; fi
 
 # Set the default apr-util source version if not defined
 if test -z "$APRUTILSRC"; then APRUTILSRC="apr-util-1.6.3"; fi
 
 # Set the default mirror url for apache if not defined
-if test -z "$MRR"; then MRR="ftp.wayne.edu/apache"; fi
+if test -z "$MRR"; then MRR="dlcdn.apache.org"; fi
 
 # Default Zipped Archives
 _HSRC="$HTTPDSRC.tar.bz2"
